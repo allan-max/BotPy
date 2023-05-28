@@ -1,6 +1,6 @@
 import interactions
 from src.repositories.discord_repository import logsrepository
-import os
+
 
 repo = logsrepository()
 class logs(interactions.Extension):
@@ -14,7 +14,7 @@ class logs(interactions.Extension):
     
     async def logs(self, ctx:interactions.CommandContext, usuario:interactions.User):
        
-        await ctx.defer(ephemeral= True)
+        await ctx.defer()
 
         ids = usuario.id.__int__()
         guild_id = ctx.guild.id.__int__()
@@ -35,7 +35,7 @@ class logs(interactions.Extension):
 
             for log in logs:                
                 
-                embed_content_message.description += f"ID: {ids}\nMotivo: {log['message_user']}\nTipo: {log['log_type']}\nTempo: {log['mute_time']}hora(s)\nResponsavel: {log['author_name']}\n\n"
+                embed_content_message.description += f"ID: {log['ids']}\nMotivo: {log['message_user']}\nTipo: {log['log_type']}\nTempo: {log['mute_time']} hora(s)\nResponsavel: {log['author_name']}\n\n"
                 embed_content_message.color = int(f'03fc28', 16)
                     
             await ctx.send(embeds=embed_content_message)

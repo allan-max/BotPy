@@ -16,7 +16,7 @@ class aviso_user(interactions.Extension):
     
     async def aviso(self, ctx:interactions.CommandContext, avisado:interactions.User, motivo:str):
         
-        await ctx.defer(ephemeral= True)
+        await ctx.defer()
         
         ids = avisado.id.__int__()
         message_user = motivo

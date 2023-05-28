@@ -19,7 +19,7 @@ class mute(interactions.Extension):
 
     async def mute(self, ctx:interactions.CommandContext, usuario:interactions.User, tempo:int, motivo:str):
         
-        await ctx.defer(ephemeral= True)
+        await ctx.defer()
         
         id_user = usuario.id.__int__()
         message_user = motivo
@@ -35,14 +35,15 @@ class mute(interactions.Extension):
 
         await usuario.modify(communication_disabled_until = dt)  
         
-        
+        print(id_user)
+
         repo.add_user({
-            "ids": id_user,
             "message_user": message_user,
             "author_name": author_name,
             "guild_id": guild_id,
             "log_type": log_type,   
-            "mute_time": mute_time
+            "mute_time": mute_time,
+            "ids": id_user
         })
         
 
