@@ -1,5 +1,3 @@
-import asyncio
-import json
 import interactions
 from src.repositories.discord_repository import logsrepository
 import datetime
@@ -31,9 +29,10 @@ class mute(interactions.Extension):
         mute_time = tempo
         
         dt = datetime.datetime.utcnow() + datetime.timedelta(hours= tempo)
-
+        
         dt = dt.strftime("%Y-%m-%dT%H:%M:%SZ")
     
+
         await usuario.modify(communication_disabled_until = dt)  
         
         
