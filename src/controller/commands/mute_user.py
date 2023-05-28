@@ -21,7 +21,7 @@ class mute(interactions.Extension):
 
     async def mute(self, ctx:interactions.CommandContext, usuario:interactions.User, tempo:int, motivo:str):
         
-        await ctx.defer()
+        await ctx.defer(ephemeral= True)
         
         id_user = usuario.id.__int__()
         message_user = motivo

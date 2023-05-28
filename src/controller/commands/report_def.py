@@ -16,7 +16,7 @@ class report_channel_define(interactions.Extension):
         
     async def reportchanneldefine(self, ctx:interactions.CommandContext, cargo:interactions.Role, canal_membro:interactions.Channel, canal_staff:interactions.Channel):
         
-        await ctx.defer()
+        await ctx.defer(ephemeral= True)
 
         channel_staff = int(canal_staff.id)
         channel_member = int(canal_membro.id)
