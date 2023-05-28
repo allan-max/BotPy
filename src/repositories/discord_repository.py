@@ -12,7 +12,7 @@ class logsrepository:
     def add_user(self, user):
         self.repositorie.insert_many([user])
     
-    def find_all_user_id(self, id,):
+    def find_all_user_id(self, id):
         
         response_users = []
         response_user_exists = self.repositorie.find_one({'ids': id})
@@ -21,12 +21,12 @@ class logsrepository:
         if response_user_exists:
             for user in self.repositorie.find({'ids': id}):
                 response_users.append({
+                    "ids" : user['ids'],
                     "message_user" : user['message_user'],
                     "author_name" : user['author_name'],
                     "guild_id" : user['guild_id'],
                     "log_type" : user['log_type'],
                     "mute_time" : user['mute_time'],
-                    "ids" : user['ids'],
                 })
             
             return response_users
@@ -40,6 +40,7 @@ class logsrepository:
         if response_user_exists:
             for user in self.repositorie.find({'guild_id': id}):
                 response_users.append({
+                    "ids" : user['ids'],
                     "message_user" : user['message_user'],
                     "author_name" : user['author_name'],
                     "guild_id" : user['guild_id'],

@@ -39,7 +39,7 @@ class ban_user(interactions.Extension):
         embed2 = interactions.Embed()
 
         embed1.title = 'Usuário banido'
-        embed1.description = f'Usuário <@{id_user}> - {id_user} foi banido com sucesso.'
+        embed1.description = f'O usuário <@{id_user}> - {id_user} foi banido com sucesso.'
     
         embed2.title = 'Você foi banido'
         embed2.description = f'motivo: {motivo}\nResponsavel: {author_name}'

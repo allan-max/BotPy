@@ -18,10 +18,11 @@ class logs(interactions.Extension):
 
         ids = usuario.id.__int__()
         guild_id = ctx.guild.id.__int__()
-        logs = repo.find_all_user_id(ids) and repo.find_all_guild_id(guild_id)
+        logs = repo.find_all_user_id(ids)
+        guild = repo.find_all_guild_id(guild_id)
         embed = interactions.Embed()
         
-        if logs:
+        if logs and guild:
            
             embed_start_message = embed
             embed_content_message = embed
@@ -37,7 +38,7 @@ class logs(interactions.Extension):
                 
                 embed_content_message.description += f"ID: {log['ids']}\nMotivo: {log['message_user']}\nTipo: {log['log_type']}\nTempo: {log['mute_time']} hora(s)\nResponsavel: {log['author_name']}\n\n"
                 embed_content_message.color = int(f'03fc28', 16)
-                    
+             
             await ctx.send(embeds=embed_content_message)
     
 

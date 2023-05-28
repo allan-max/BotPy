@@ -26,12 +26,12 @@ class aviso_user(interactions.Extension):
         mute_time = "Indefinido"
 
         repo.add_user({
+            "ids": ids,
             "message_user": message_user,
             "author_name": author_name,
             "guild_id": guild_id,
             "log_type": log_type,   
-            "mute_time": mute_time,
-            "ids": ids
+            "mute_time": mute_time
         })
         
         embed_message_user = interactions.Embed()

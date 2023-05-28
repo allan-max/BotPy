@@ -21,41 +21,39 @@ class mute(interactions.Extension):
         
         await ctx.defer()
         
-        id_user = usuario.id.__int__()
+        ids = usuario.id.__int__()
         message_user = motivo
         author_name = ctx.author.name
         guild_id = ctx.guild.id.__int__()
         log_type = str("Mute")
-        mute_time = tempo
+        mute_time = tempo.__int__()
         
         dt = datetime.datetime.utcnow() + datetime.timedelta(hours= tempo)
         
         dt = dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-    
+
 
         await usuario.modify(communication_disabled_until = dt)  
         
-        print(id_user)
-
         repo.add_user({
+            "ids": ids,
             "message_user": message_user,
             "author_name": author_name,
             "guild_id": guild_id,
             "log_type": log_type,   
             "mute_time": mute_time,
-            "ids": id_user
+
         })
         
-
         embed_mute = interactions.Embed()
         embed_error = interactions.Embed()
         embed_send = interactions.Embed()
 
-        embed_mute.description = f"{id_user} - <@{id_user}> foi mutado"
+        embed_mute.description = f"O usuário {ids} - <@{ids}> foi mutado com sucesso"
         embed_mute.color = int(f'03fc28', 16)
 
         embed_error.title = "Erro"  
-        embed_error.description = f"<@{id_user}> não foi mutado"
+        embed_error.description = f"<@{ids}> não foi mutado"
         embed_error.color = int(f'ff0000', 16)
 
         embed_send.title = "Você foi mutado"
