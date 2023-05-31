@@ -13,7 +13,7 @@ class warn_report(interactions.Extension):
                                     interactions.Option(name= 'canal', description='canal do ocorrido', required= True, type= interactions.OptionType.CHANNEL)
                                     ])
     
-    async def report(self, ctx:interactions.CommandContext, reportado:interactions.User, motivo:str, canal:interactions.Channel, ephemeral = True):
+    async def report(self, ctx:interactions.CommandContext, reportado:interactions.User, motivo:str, canal:interactions.Channel):
         
         await ctx.defer(ephemeral= True)
 
