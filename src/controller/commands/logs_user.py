@@ -20,12 +20,12 @@ class logs(interactions.Extension):
         guild_id = ctx.guild.id.__int__()
         logs = repo.find_all_user_id(ids)
         guild = repo.find_all_guild_id(guild_id)
-        embed = interactions.Embed()
+
         
         if logs and guild:
            
-            embed_start_message = embed
-            embed_content_message = embed
+            embed_start_message = interactions.Embed()
+            embed_content_message = interactions.Embed()
 
             embed_start_message.description = f"Logs do Id: {ids} - <@{ids}>"
             embed_start_message.color = int(f'03fc28', 16)
@@ -35,16 +35,17 @@ class logs(interactions.Extension):
             embed_content_message.description = ''
 
             for log in logs:                
+
                 
-                embed_content_message.description += f"ID: {log['ids']}\nMotivo: {log['message_user']}\nTipo: {log['log_type']}\nTempo: {log['mute_time']} hora(s)\nResponsavel: {log['author_name']}\n\n"
-                embed_content_message.color = int(f'03fc28', 16)
+                    embed_content_message.description += f"ID do Log: {log['_id']}\nID do Usuário: {log['ids']}\nMotivo: {log['message_user']}\nTipo: {log['log_type']}\nTempo: {log['mute_time']}\nResponsavel: {log['author_name']}\n\n"
+                    embed_content_message.color = int(f'03fc28', 16)
              
             await ctx.send(embeds=embed_content_message)
     
 
         else: 
             
-            embed_error = embed
+            embed_error = interactions.Embed()
             embed_error.description = f":x: Nenhum log encontrado para o usuário: {ids} - <@{ids}>"
             embed_error.color = int(f'ff0000', 16)
             

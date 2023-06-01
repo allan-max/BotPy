@@ -49,7 +49,8 @@ class mute(interactions.Extension):
         embed_error = interactions.Embed()
         embed_send = interactions.Embed()
 
-        embed_mute.description = f"O usuário {ids} - <@{ids}> foi mutado com sucesso"
+
+        embed_mute.description = f":white_check_mark: O usuário {ids} - <@{ids}> foi mutado com sucesso"
         embed_mute.color = int(f'03fc28', 16)
 
         embed_error.title = "Erro"  

@@ -12,6 +12,9 @@ class logsrepository:
     def add_user(self, user):
         self.repositorie.insert_many([user])
     
+    def remove_user(self, user):
+        self.repositorie.delete_one({'_id': user}) 
+    
     def find_all_user_id(self, id):
         
         response_users = []
@@ -21,12 +24,13 @@ class logsrepository:
         if response_user_exists:
             for user in self.repositorie.find({'ids': id}):
                 response_users.append({
+                    "_id" : user['_id'],
                     "ids" : user['ids'],
                     "message_user" : user['message_user'],
                     "author_name" : user['author_name'],
                     "guild_id" : user['guild_id'],
                     "log_type" : user['log_type'],
-                    "mute_time" : user['mute_time'],
+                    "mute_time" : user['mute_time']
                 })
             
             return response_users
@@ -45,7 +49,7 @@ class logsrepository:
                     "author_name" : user['author_name'],
                     "guild_id" : user['guild_id'],
                     "log_type" : user['log_type'],
-                    "mute_time" : user['mute_time'],
+                    "mute_time" : user['mute_time']
                 })
             
             return response_users
@@ -59,16 +63,21 @@ class reportrepository:
             database_name="discord-bot",
             collection_name="report-repository",
         ).get_collection_name()
+        
+    def find_documents(self):
+        return self.repositorie.count_documents({})
     
     def add_user(self, user):
         self.repositorie.insert_many([user])
+    
+    def remove_user(self, user):
+        self.repositorie.delete_one()
     
     def find_channel_member(self, id):
         
         response_users = []
         response_user_exists = self.repositorie.find_one({'channel_member': id})
-
-
+        self.funcaoDeGente()
         if response_user_exists:
             for user in self.repositorie.find({'channel_member': id}):
                 response_users.append({
@@ -81,4 +90,31 @@ class reportrepository:
             return response_users
         
         return False
+
+class roledef:
+
+    def __init__(self):
+        self.repositorie = ConnectionMongo(
+            database_name="discord-bot",
+            collection_name="roles",
+        ).get_collection_name()
     
+    def add_user(self, user):
+        self.repositorie.insert_many([user])
+
+    def find_role(self, id):
+        
+        response_users = []
+        response_user_exists = self.repositorie.find_one({'role': id})
+
+
+        if response_user_exists:
+            for user in self.repositorie.find({'role': id}):
+                response_users.append({
+                    "role": user['role'],
+                    "guild_id": user['guild_id']
+                })
+            
+            return response_users
+        
+        return False
