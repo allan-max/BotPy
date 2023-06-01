@@ -64,9 +64,6 @@ class reportrepository:
             collection_name="report-repository",
         ).get_collection_name()
         
-    def find_documents(self):
-        return self.repositorie.count_documents({})
-    
     def add_user(self, user):
         self.repositorie.insert_many([user])
     
@@ -77,7 +74,7 @@ class reportrepository:
         
         response_users = []
         response_user_exists = self.repositorie.find_one({'channel_member': id})
-        self.funcaoDeGente()
+
         if response_user_exists:
             for user in self.repositorie.find({'channel_member': id}):
                 response_users.append({

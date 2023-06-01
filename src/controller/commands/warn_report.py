@@ -28,10 +28,15 @@ class warn_report(interactions.Extension):
         
         if logs:    
             for log in logs:
+                
                 channel_id = log['channel_staff']
+                
                 cargo = log['cargo']
+                
                 for channel in ctx.guild.channels:                        
+                    
                         if channel.id == channel_id:
+                            
                             embed1 = interactions.Embed()
                             
                             embed1.title = 'Report'
@@ -40,14 +45,14 @@ class warn_report(interactions.Extension):
                             await channel.send(f'||<@&{cargo}>||')
                             await channel.send(embeds=embed1)
                          
-        else:
-                
-                embed_else = interactions.Embed()
+        else:   
+            
+            embed_else = interactions.Embed()
 
-                embed_else.title = 'Erro ao usar o comando'
-                embed_else.description = f'Não pode utilizar o comando de reportar fora do canal de report'
-                embed_else.color = int('ff0000', 16)
-                await author.send(embeds=embed_else)            
+            embed_else.title = 'Erro ao usar o comando'
+            embed_else.description = f'Não pode utilizar o comando de reportar fora do canal de report'
+            embed_else.color = int('ff0000', 16)
+            await author.send(embeds=embed_else)            
                 
                         
 

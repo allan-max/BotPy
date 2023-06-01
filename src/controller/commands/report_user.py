@@ -20,21 +20,23 @@ class aviso_user(interactions.Extension):
         
         await ctx.defer()
         
-        ids = avisado.id.__int__()
-        message_user = motivo
-        author_name = ctx.author.name
         role = ctx.member.roles
-        guild_id = ctx.guild.id.__int__()
-        log_type = str("Aviso")
-        mute_time = "Indefinido"
         i = 0
-
-
+        
         while len(role) > i:
             logs = repo2.find_role(role[i])    
             
             if logs:
                 
+                ids = avisado.id.__int__()
+                message_user = motivo
+                author = ctx.author
+                author_name = ctx.author.name
+                guild_id = ctx.guild.id.__int__()
+                log_type = str("Aviso")
+                mute_time = "Indefinido"
+
+        
                 repo.add_user({
                     "ids": ids,
                     "message_user": message_user,
@@ -61,7 +63,12 @@ class aviso_user(interactions.Extension):
                 
         
         else:
-            await ctx.send('você não tem permissão')
+                embed_else = interactions.Embed()
+
+                embed_else.title = 'Erro ao usar o comando'
+                embed_else.description = f'Você não tem permissão para usar o comando'
+                embed_else.color = int('ff0000', 16)
+                await author.send(embeds=embed_else) 
 
 
 def setup (bot):
