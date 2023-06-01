@@ -28,10 +28,9 @@ class logs(interactions.Extension):
             if logs2:
 
                 ids = usuario.id.__int__()
-                guild_id = ctx.guild.id.__int__()
+                guild_id = ctx.guild.id.__int__() 
                 logs = repo.find_all_user_id(ids)
                 guild = repo.find_all_guild_id(guild_id)
-            
             
                 if logs and guild:
                 
@@ -61,7 +60,7 @@ class logs(interactions.Extension):
                     embed_error.color = int(f'ff0000', 16)
                     
                     await ctx.send(embeds=embed_error)
-            
+                return
                 
             else:
                 
@@ -73,6 +72,16 @@ class logs(interactions.Extension):
                 embed_else.color = int('ff0000', 16)
                 await author.send(embeds=embed_else)
             return
+        
+        else:
+                embed_else1 = interactions.Embed()
+
+                embed_else1.title = 'Erro ao usar o comando'
+                embed_else1.description = f'Você não tem permissão para usar o comando'
+                embed_else1.color = int('ff0000', 16)
+                author = ctx.author
+                await author.send(embeds=embed_else1)   
+        return  
        
 def setup (bot):
     logs(bot)

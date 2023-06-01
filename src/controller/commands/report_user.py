@@ -60,15 +60,29 @@ class aviso_user(interactions.Extension):
                 embed_message_channel.color = int('03fc28', 16)
                 
                 await ctx.send(embeds=embed_message_channel) 
+                return
                 
         
-        else:
+            else:
+                
+                author = ctx.author
                 embed_else = interactions.Embed()
 
                 embed_else.title = 'Erro ao usar o comando'
                 embed_else.description = f'Você não tem permissão para usar o comando'
                 embed_else.color = int('ff0000', 16)
-                await author.send(embeds=embed_else) 
+                await author.send(embeds=embed_else)
+            return
+        
+        else:
+                embed_else1 = interactions.Embed()
+
+                embed_else1.title = 'Erro ao usar o comando'
+                embed_else1.description = f'Você não tem permissão para usar o comando'
+                embed_else1.color = int('ff0000', 16)
+                author = ctx.author
+                await author.send(embeds=embed_else1)   
+        return 
 
 
 def setup (bot):
