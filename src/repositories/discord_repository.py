@@ -1,4 +1,5 @@
 from src.models.db.mongodb import ConnectionMongo
+from bson import ObjectId
 
 class logsrepository:
 
@@ -44,6 +45,8 @@ class logsrepository:
                 })
             
             return response_users
+        
+        return False
     
     def find_all_guild_id(self, id):
         
@@ -95,6 +98,8 @@ class reportrepository:
                 })
             
             return response_users
+        
+        return False
     
     def find_user_id(self, id):
         
@@ -105,7 +110,6 @@ class reportrepository:
     
         return False
         
-
 class roledef:
 
     def __init__(self):
@@ -122,34 +126,31 @@ class roledef:
 
     def find_role(self, id):
         
-        response_users = []
         response_user_exists = self.repositorie.find_one({'role': id})
 
         if response_user_exists:
-            for user in self.repositorie.find({'role': id}):
-                response_users.append({
-                    "_id": user['_id'],
-                    "role": user['role'],
-                    "guild_id": user['guild_id'],
-                    "author": user['author']
-                })
-            
-            return response_users
+            return True
+        
+        return False
   
     def find_guild_role(self, id):
         
         response_users = []
-        response_user_exists = self.repositorie.find_one({'guid_id': id})
+        response_user_exists = self.repositorie.find_one({'guild_id': id})
 
 
         if response_user_exists:
             for user in self.repositorie.find({'guild_id': id}):
                 response_users.append({
-                    "guild_id": user['guild_id']
+                    "guild_id": user['guild_id'],
+                    "role": user['role'],
+                    "_id": user['_id'],
+                    "author": user['author']
                 })
             
             return response_users
-    
+        
+        return False
     
     def find_user_id(self, id):
         

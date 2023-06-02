@@ -83,7 +83,7 @@ class logs(interactions.Extension):
                 author = ctx.author
                 
                 await author.send(embeds=embed_else1)   
-        return  
+        return 
        
 def setup (bot):
     logs(bot)
