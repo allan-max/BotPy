@@ -7,16 +7,16 @@ repo = logsrepository()
 repo2 = roledef()
 
 
-class remover_logs(interactions.Extension):
+class remover_log_role(interactions.Extension):
     def __init__(self, bot):
         self.bot = bot
-    @interactions.extension_command(name='remover_log',
+    @interactions.extension_command(name='remover_log_de_staff',
                           
                           options=[
                                interactions.Option(name='id', description='Id do log', required=True, type=interactions.OptionType.STRING)
                           ])
     
-    async def logs(self, ctx:interactions.CommandContext, id:str):
+    async def remover_logs_role(self, ctx:interactions.CommandContext, id:str):
         
         await ctx.defer()
 
@@ -30,9 +30,9 @@ class remover_logs(interactions.Extension):
             
             if logs:
                              
-                if repo.find_user_id(ObjectId(id)):
+                if repo2.find_user_id(ObjectId(id)):
                      
-                    repo.remove_user(ObjectId(id))
+                    repo2.remove_user(ObjectId(id))
 
                     embed = interactions.Embed()
                     embed.title = "Log apagado"
@@ -50,17 +50,18 @@ class remover_logs(interactions.Extension):
                     embed1.description = "O Log não foi encontrado, confira se colocou o ID do Log correto"
                     embed1.color = int(f'ff0000', 16)
                     await author.send(embeds=embed1)
-                    return
+                return
                 
             else:
-                author = ctx.author
+         
                 embed_else = interactions.Embed()
 
                 embed_else.title = 'Erro ao usar o comando'
                 embed_else.description = f'Você não tem permissão para usar o comando'
                 embed_else.color = int(f'ff0000', 16)
-                await author.send(embeds=embed_else)
-                return
+            author = ctx.author
+            await author.send(embeds=embed_else)
+            return
         
         else:
             embed_else1 = interactions.Embed()
@@ -68,10 +69,10 @@ class remover_logs(interactions.Extension):
             embed_else1.title = 'Erro ao usar o comando'
             embed_else1.description = f'Você não tem permissão para usar o comando'
             embed_else1.color = int(f'ff0000', 16)
-            author = ctx.author
-            await author.send(embeds=embed_else1)   
-            return
+        author = ctx.author
+        await author.send(embeds=embed_else1)   
+        return
 
 def setup (bot):
-    remover_logs(bot)
+    remover_log_role(bot)
     

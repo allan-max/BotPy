@@ -29,13 +29,12 @@ class ban_user(interactions.Extension):
             if logs:
                 id_user = usuario.id.__int__()
                 author = ctx.author
+                
                 message = motivo
                 author_name = ctx.author.name
                 guildid = ctx.guild.id.__int__()
                 log_type = str('Ban')
-                mute_time = str('indefinido')
-
-                await usuario.ban(days= 7, reason = motivo)
+                mute_time = str('Indefinido')
                 
                 repo.add_user({
                     "ids": id_user,
@@ -50,9 +49,17 @@ class ban_user(interactions.Extension):
 
                 embed1.title = 'Usuário banido'
                 embed1.description = f'O usuário <@{id_user}> - {id_user} foi banido com sucesso.'
-            
+                embed1.color = int(f'ff00', 16)
+
                 embed2.title = 'Você foi banido'
-                embed2.description = f'motivo: {motivo}\nResponsavel: {author_name}'
+                embed2.description = f'Motivo: {motivo}\nResponsavel: {author_name}'
+                embed2.color = int(f'ff0000', 16)
+
+                await ctx.send(embeds=embed1)
+                await usuario.send(embeds=embed2)
+                
+                await usuario.ban(days= 7, reason = motivo)
+                
                 return
             
             else:
@@ -61,7 +68,7 @@ class ban_user(interactions.Extension):
 
                 embed_else.title = 'Erro ao usar o comando'
                 embed_else.description = f'Você não tem permissão para usar o comando'
-                embed_else.color = int('ff0000', 16)
+                embed_else.color = int(f'ff0000', 16)
                 await author.send(embeds=embed_else)
             return
             
@@ -70,7 +77,7 @@ class ban_user(interactions.Extension):
 
             embed_else1.title = 'Erro ao usar o comando'
             embed_else1.description = f'Você não tem permissão para usar o comando'
-            embed_else1.color = int('ff0000', 16)
+            embed_else1.color = int(f'ff0000', 16)
             author = ctx.author
             await author.send(embeds=embed_else1)   
         return

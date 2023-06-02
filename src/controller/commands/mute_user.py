@@ -43,7 +43,6 @@ class mute(interactions.Extension):
                 
                 dt = dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
-
                 await usuario.modify(communication_disabled_until = dt)  
                 
                 repo.add_user({
@@ -60,9 +59,9 @@ class mute(interactions.Extension):
                 embed_error = interactions.Embed()
                 embed_send = interactions.Embed()
 
-
+                embed_mute.title = f"Usuário foi Mutado"
                 embed_mute.description = f":white_check_mark: O usuário {ids} - <@{ids}> foi mutado com sucesso"
-                embed_mute.color = int(f'03fc28', 16)
+                embed_mute.color = int(f'ff00', 16)
 
                 embed_error.title = "Erro"  
                 embed_error.description = f"<@{ids}> não foi mutado"
@@ -86,18 +85,18 @@ class mute(interactions.Extension):
 
                 embed_else.title = 'Erro ao usar o comando'
                 embed_else.description = f'Você não tem permissão para usar o comando'
-                embed_else.color = int('ff0000', 16)
+                embed_else.color = int(f'ff0000', 16)
                 await author.send(embeds=embed_else)
             return
     
         else:
-                embed_else1 = interactions.Embed()
+            embed_else1 = interactions.Embed()
 
-                embed_else1.title = 'Erro ao usar o comando'
-                embed_else1.description = f'Você não tem permissão para usar o comando'
-                embed_else1.color = int('ff0000', 16)
-                author = ctx.author
-                await author.send(embeds=embed_else1)   
+            embed_else1.title = 'Erro ao usar o comando'
+            embed_else1.description = f'Você não tem permissão para usar o comando'
+            embed_else1.color = int(f'ff0000', 16)
+            author = ctx.author
+            await author.send(embeds=embed_else1)   
         return
 
     

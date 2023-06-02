@@ -15,6 +15,16 @@ class logsrepository:
     def remove_user(self, user):
         self.repositorie.delete_one({'_id': user}) 
     
+    def find_user_id(self, id):
+        
+        response_user_exists = self.repositorie.find_one({'_id': id})
+
+        if response_user_exists:
+            return True
+    
+        return False
+        
+    
     def find_all_user_id(self, id):
         
         response_users = []
@@ -85,8 +95,16 @@ class reportrepository:
                 })
             
             return response_users
+    
+    def find_user_id(self, id):
         
+        response_user_exists = self.repositorie.find_one({'_id': id})
+
+        if response_user_exists:
+            return True
+    
         return False
+        
 
 class roledef:
 
@@ -98,20 +116,47 @@ class roledef:
     
     def add_user(self, user):
         self.repositorie.insert_many([user])
+    
+    def remove_user(self, user):
+        self.repositorie.delete_one({'_id': user})
 
     def find_role(self, id):
         
         response_users = []
         response_user_exists = self.repositorie.find_one({'role': id})
 
-
         if response_user_exists:
             for user in self.repositorie.find({'role': id}):
                 response_users.append({
+                    "_id": user['_id'],
                     "role": user['role'],
+                    "guild_id": user['guild_id'],
+                    "author": user['author']
+                })
+            
+            return response_users
+  
+    def find_guild_role(self, id):
+        
+        response_users = []
+        response_user_exists = self.repositorie.find_one({'guid_id': id})
+
+
+        if response_user_exists:
+            for user in self.repositorie.find({'guild_id': id}):
+                response_users.append({
                     "guild_id": user['guild_id']
                 })
             
             return response_users
+    
+    
+    def find_user_id(self, id):
+        
+        response_user_exists = self.repositorie.find_one({'_id': id})
+
+        if response_user_exists:
+            return True
         
         return False
+        

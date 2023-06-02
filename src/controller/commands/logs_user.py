@@ -38,17 +38,16 @@ class logs(interactions.Extension):
                     embed_content_message = interactions.Embed()
 
                     embed_start_message.description = f"Logs do Id: {ids} - <@{ids}>"
-                    embed_start_message.color = int(f'03fc28', 16)
+                    embed_start_message.color = int(f'ff00', 16)
 
                     await ctx.send(embeds=embed_start_message)  
 
                     embed_content_message.description = ''
 
                     for log in logs:                
-
                         
-                            embed_content_message.description += f"ID do Log: {log['_id']}\nID do Usuário: {log['ids']}\nMotivo: {log['message_user']}\nTipo: {log['log_type']}\nTempo: {log['mute_time']}\nResponsavel: {log['author_name']}\n\n"
-                            embed_content_message.color = int(f'03fc28', 16)
+                        embed_content_message.description += f"ID do Log: {log['_id']}\n\nID do Usuário: {log['ids']}\nMotivo: {log['message_user']}\nTipo: {log['log_type']}\nTempo: {log['mute_time']}\nResponsavel: {log['author_name']}\n\n"
+                        embed_content_message.color = int(f'ff00', 16)
                     
                     await ctx.send(embeds=embed_content_message)
                     return
@@ -69,7 +68,8 @@ class logs(interactions.Extension):
 
                 embed_else.title = 'Erro ao usar o comando'
                 embed_else.description = f'Você não tem permissão para usar o comando'
-                embed_else.color = int('ff0000', 16)
+                embed_else.color = int(f'ff0000', 16)
+                
                 await author.send(embeds=embed_else)
             return
         
@@ -78,8 +78,10 @@ class logs(interactions.Extension):
 
                 embed_else1.title = 'Erro ao usar o comando'
                 embed_else1.description = f'Você não tem permissão para usar o comando'
-                embed_else1.color = int('ff0000', 16)
+                embed_else1.color = int(f'ff0000', 16)
+                
                 author = ctx.author
+                
                 await author.send(embeds=embed_else1)   
         return  
        

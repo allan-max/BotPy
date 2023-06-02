@@ -54,7 +54,7 @@ class report_channel_define(interactions.Extension):
 
                 embed_else.title = 'Erro ao usar o comando'
                 embed_else.description = f'Você não tem permissão para usar o comando'
-                embed_else.color = int('ff0000', 16)
+                embed_else.color = int(f'ff0000', 16)
                 await author.send(embeds=embed_else)
             return
         
@@ -63,7 +63,7 @@ class report_channel_define(interactions.Extension):
 
                 embed_else1.title = 'Erro ao usar o comando'
                 embed_else1.description = f'Você não tem permissão para usar o comando'
-                embed_else1.color = int('ff0000', 16)
+                embed_else1.color = int(f'ff0000', 16)
                 author = ctx.author
                 await author.send(embeds=embed_else1)   
         return     

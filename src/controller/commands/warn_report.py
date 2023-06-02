@@ -41,7 +41,7 @@ class warn_report(interactions.Extension):
                             
                             embed1.title = 'Report'
                             embed1.description = f'O usuário <@{user_report}>\nreportou: {user_report_name} - <@{user_report_name}>\nMotivo: {reason}\nchat: <#{reported_channel}>'
-                            embed1.color = int('03fc28', 16)
+                            embed1.color = int(f'ff00', 16)
                             await channel.send(f'||<@&{cargo}>||')
                             await channel.send(embeds=embed1)
                          
@@ -51,7 +51,7 @@ class warn_report(interactions.Extension):
 
             embed_else.title = 'Erro ao usar o comando'
             embed_else.description = f'Não pode utilizar o comando de reportar fora do canal de report'
-            embed_else.color = int('ff0000', 16)
+            embed_else.color = int(f'ff0000', 16)
             await author.send(embeds=embed_else)            
                 
                         

@@ -34,7 +34,7 @@ class aviso_user(interactions.Extension):
                 author_name = ctx.author.name
                 guild_id = ctx.guild.id.__int__()
                 log_type = str("Aviso")
-                mute_time = "Indefinido"
+                mute_time = str("Indefinido")
 
         
                 repo.add_user({
@@ -50,14 +50,14 @@ class aviso_user(interactions.Extension):
                 embed_message_channel = interactions.Embed()
 
                 embed_message_user.title = 'Você foi avisado'
-                embed_message_user.description = f'Responsavel {author_name}\nMotivo: {message_user}\nEspero que não se repita.'
+                embed_message_user.description = f'Motivo: {message_user}\nResponsavel: {author_name}\nEspero que não se repita.'
                 embed_message_user.color = int('ffff00', 16)
                 
                 await avisado.send(embeds=embed_message_user)
                 
                 embed_message_channel.title = 'Aviso'
                 embed_message_channel.description = f':white_check_mark: O usuário <@{ids}> foi avisado com sucesso.'
-                embed_message_channel.color = int('03fc28', 16)
+                embed_message_channel.color = int(f'ff00', 16)
                 
                 await ctx.send(embeds=embed_message_channel) 
                 return
@@ -70,7 +70,7 @@ class aviso_user(interactions.Extension):
 
                 embed_else.title = 'Erro ao usar o comando'
                 embed_else.description = f'Você não tem permissão para usar o comando'
-                embed_else.color = int('ff0000', 16)
+                embed_else.color = int(f'ff0000', 16)
                 await author.send(embeds=embed_else)
             return
         
@@ -79,7 +79,7 @@ class aviso_user(interactions.Extension):
 
                 embed_else1.title = 'Erro ao usar o comando'
                 embed_else1.description = f'Você não tem permissão para usar o comando'
-                embed_else1.color = int('ff0000', 16)
+                embed_else1.color = int(f'ff0000', 16)
                 author = ctx.author
                 await author.send(embeds=embed_else1)   
         return 
