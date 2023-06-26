@@ -51,7 +51,7 @@ class logs(interactions.Extension):
                     
                     await ctx.send(embeds=embed_content_message)
                     return
-
+                
                 else: 
                     
                     embed_error = interactions.Embed()

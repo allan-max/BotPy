@@ -1,5 +1,4 @@
 from src.models.db.mongodb import ConnectionMongo
-from bson import ObjectId
 
 class logsrepository:
 
@@ -66,7 +65,7 @@ class logsrepository:
                 })
             
             return response_users
-        
+            
         return False
 
 class reportrepository:

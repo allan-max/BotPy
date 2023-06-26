@@ -49,6 +49,7 @@ class remover_log_role(interactions.Extension):
                     embed1.title = "Erro"
                     embed1.description = "O Log não foi encontrado, confira se colocou o ID do Log correto"
                     embed1.color = int(f'ff0000', 16)
+        
                     await author.send(embeds=embed1)
                 return
                 
@@ -59,8 +60,11 @@ class remover_log_role(interactions.Extension):
                 embed_else.title = 'Erro ao usar o comando'
                 embed_else.description = f'Você não tem permissão para usar o comando'
                 embed_else.color = int(f'ff0000', 16)
+        
             author = ctx.author
+        
             await author.send(embeds=embed_else)
+            
             return
         
         else:
@@ -69,7 +73,9 @@ class remover_log_role(interactions.Extension):
             embed_else1.title = 'Erro ao usar o comando'
             embed_else1.description = f'Você não tem permissão para usar o comando'
             embed_else1.color = int(f'ff0000', 16)
+        
         author = ctx.author
+        
         await author.send(embeds=embed_else1)   
         return
 

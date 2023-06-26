@@ -19,11 +19,12 @@ class logs_role(interactions.Extension):
         i = 0
 
         while len(role) > i:
-           
+                
             logs = repo.find_role(role[i]) 
             guild_id = ctx.guild.id.__int__()
             guild = repo.find_guild_role(guild_id)
-         
+
+        
             if logs and guild:
 
                 embed_log = interactions.Embed()
@@ -57,7 +58,7 @@ class logs_role(interactions.Extension):
         
             await author.send(embeds=embed_else1)   
         return
-        
+    
 
 def setup (bot):
     logs_role(bot)
