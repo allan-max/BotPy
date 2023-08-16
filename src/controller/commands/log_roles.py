@@ -4,7 +4,6 @@ from bson import ObjectId
 
 repo = roledef()
 
-
 class logs_role(interactions.Extension):
     def __init__(self, bot):
         self.bot = bot
