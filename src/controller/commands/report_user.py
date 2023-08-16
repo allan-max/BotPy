@@ -9,7 +9,7 @@ repo2 = roledef()
 class aviso_user(interactions.Extension):
     def __init__(self, bot):
         self.bot = bot
-    @interactions.extension_command(name='aviso',
+    @interactions.extension_command(name='avisar',
                           
                         options=[
                                interactions.Option(name='avisado', description='ID do usuário', required=True, type=interactions.OptionType.USER),
