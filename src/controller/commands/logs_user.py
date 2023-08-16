@@ -17,21 +17,21 @@ class logs(interactions.Extension):
     async def logs(self, ctx:interactions.CommandContext, usuario:interactions.User):
        
         await ctx.defer()
-
+        
         role = ctx.member.roles
         i = 0
         
         while len(role) > i:
-            
+        
             logs2 = repo2.find_role(role[i]) 
             
             if logs2:
 
-                ids = usuario.id.__int__()
                 guild_id = ctx.guild.id.__int__() 
-                logs = repo.find_all_user_id(ids)
                 guild = repo.find_all_guild_id(guild_id)
-            
+                ids = usuario.id.__int__()
+                logs = repo.find_all_user_id(ids)
+    
                 if logs and guild:
                 
                     embed_start_message = interactions.Embed()
